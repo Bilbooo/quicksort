@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuickSort — Simulazione Interattiva</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ── Header ───────────────────────────────────────────────────────────── -->
+  <div id="header">
+    <h1>◆ QUICKSORT</h1>
+    <p id="header-sub"></p>
+  </div>
+
+  <!-- ── Progress bar ─────────────────────────────────────────────────────── -->
+  <div id="progress-bar">
+    <div id="progress-fill"></div>
+  </div>
+
+  <!-- ── Main layout ──────────────────────────────────────────────────────── -->
+  <div id="main">
+
+    <!-- Left column -->
+    <div id="left">
+
+      <!-- Array display -->
+      <div class="card" id="array-card">
+        <div id="ptr-labels"></div>
+        <div id="cells"></div>
+        <div id="range-bar"></div>
+        <div id="legend"></div>
+      </div>
+
+      <!-- Info bar (range, pivot, i, j) -->
+      <div id="info-bar"></div>
+
+      <!-- Step description -->
+      <div id="desc-card">
+        <div id="phase-badge"></div>
+        <div id="desc-text"></div>
+      </div>
+
+      <!-- Playback controls -->
+      <div id="controls">
+        <button class="btn" id="btn-start" title="Vai all'inizio  [Home]">⏮</button>
+        <button class="btn" id="btn-prev"  title="Passo precedente  [←]">◀ Prev</button>
+        <button class="btn play-btn" id="btn-play" title="Play / Pausa  [P]">▶ Play</button>
+        <button class="btn" id="btn-next"  title="Passo successivo  [→  Spazio]">Next ▶</button>
+        <button class="btn" id="btn-end"   title="Vai alla fine  [End]">⏭</button>
+        <select class="spd" id="speed-sel" title="Velocità riproduzione">
+          <option value="300">⚡ Veloce</option>
+          <option value="900" selected>▶ Normale</option>
+          <option value="1800">🐢 Lento</option>
+        </select>
+      </div>
+
+      <!-- Slider -->
+      <div id="slider-wrap">
+        <input type="range" id="slider" min="0" value="0">
+        <div id="slider-labels">
+          <span>Inizio</span>
+          <span id="step-lbl"></span>
+          <span>Fine</span>
+        </div>
+      </div>
+
+      <!-- Keyboard hint -->
+      <p id="kb-hint">
+        <kbd>←</kbd> <kbd>→</kbd> passo per passo &nbsp;·&nbsp;
+        <kbd>Spazio</kbd> avanza &nbsp;·&nbsp;
+        <kbd>P</kbd> play/pausa &nbsp;·&nbsp;
+        <kbd>Home</kbd> <kbd>End</kbd> inizio/fine
+      </p>
+
+    </div><!-- /left -->
+
+    <!-- Right column -->
+    <div id="right">
+
+      <!-- Call stack -->
+      <div class="card">
+        <div class="panel-title">📋 Stack Ricorsivo</div>
+        <div id="call-stack"></div>
+      </div>
+
+      <!-- Pseudocode -->
+      <div class="card">
+        <div class="panel-title">📄 Pseudocodice</div>
+        <pre id="pseudocode">QuickSort(A, p, r)
+ if (p &lt; r) {
+  q = Partition
+       (A, p, r)
+  QuickSort
+    (A, p, q-1)
+  QuickSort
+    (A, q+1, r)
+ }
+
+Partition(A, p, r)
+ x = A[r]  ← pivot
+ i = p − 1
+ for j = p to r-1:
+  if A[j] &le; x:
+   i++
+   swap(A[i], A[j])
+ swap(A[i+1], A[r])
+ return i + 1</pre>
+      </div>
+
+      <!-- Sorted tracker -->
+      <div class="card">
+        <div class="panel-title">✅ Posizioni Fisse</div>
+        <div id="sorted-grid"></div>
+        <div id="sorted-count"></div>
+      </div>
+
+    </div><!-- /right -->
+  </div><!-- /main -->
+
+  <script src="script.js"></script>
+</body>
+</html>
